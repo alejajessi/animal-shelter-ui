@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Give An Animal Service When a request to list allthe animals is made Then it should return the right data 1`] = `
+Array [
+  Object {
+    "breed": "Bengali",
+    "gender": "Female",
+    "isVaccinated": true,
+    "name": "Manchas",
+    "vaccines": Array [
+      "rabia",
+    ],
+  },
+]
+`;
