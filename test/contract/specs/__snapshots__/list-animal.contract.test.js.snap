@@ -1,24 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-<<<<<<< HEAD
-exports[`Give An Animal Service When a request to list allthe animals is made Then it should return the right data 1`] = `
-=======
-exports[`Animal Service When a request to list all animals is made should return the correct data 1`] = `
->>>>>>> main
-Array [
-  Object {
     "breed": "Bengali",
-    "gender": "Female",
-<<<<<<< HEAD
-    "isVaccinated": true,
-    "name": "Manchas",
-    "vaccines": Array [
-      "rabia",
-    ],
-=======
     "name": "manchas",
     "vaccinated": true,
->>>>>>> main
   },
 ]
 `;
