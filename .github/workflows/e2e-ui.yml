@@ -1,4 +1,7 @@
+<<<<<<< HEAD
   
+=======
+>>>>>>> main
 name: E2E UI Tests
 
 on:
@@ -27,4 +30,9 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           wait-on: "https://animal-shelter-back.herokuapp.com/animals"
+<<<<<<< HEAD
           browser: chrome
+=======
+          browser: chrome
+          
+>>>>>>> main
