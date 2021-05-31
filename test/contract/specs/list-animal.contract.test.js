@@ -1,41 +1,50 @@
-import {Matchers} from '@pact-foundation/pact';
-import {AnimalController} from '../../../controllers';
-import {provider} from '../config/initPact';
+import { provider } from '../config/init-pact';
+import { AnimalController } from '../../../controllers';
+import { Matchers } from '@pact-foundation/pact';
 
-describe('Animal Service', () => {
+const animal = {
+    name: "Manchas",
+    breed: "Bengali",
+    gender: "Female"
 
+}
+
+describe('Given an animal service', () => {
     beforeAll(async() => {
         await provider.setup();
-    })
-    describe('When a request to list all animals is made', () => {
-        beforeAll(async () => {
+    });
+
+    describe('When a request to list all the animal is made', () => {
+        beforeAll(async() => {
             await provider.addInteraction({
-                uponReceiving: 'a request to list all animals',
-                state: "has animals",
+                state: 'a request to list all animals',
+                uponReceiving: 'list all animals',
                 withRequest: {
                     method: 'GET',
                     path: '/animals'
                 },
                 willRespondWith: {
                     status: 200,
-                    body: Matchers.eachLike(
-                        {
-                            name: Matchers.like('manchas'),
-                            breed: Matchers.like("Bengali"),
-                            gender: Matchers.like("Female"),
-                            vaccinated: Matchers.boolean(true)
-                        }
-                    )
+                    body: Matchers.eachLike({
+                        name: Matchers.string(animal.name),
+                        breed: Matchers.like(animal.breed),
+                        gender: Matchers.like(animal.gender),
+                        vaccinated: Matchers.boolean(true),
+                    }, {min: 1})
                 }
             });
         });
 
+        test('Then it should return the right data', async() => {
             const response = await AnimalController.list();
             expect(response.data).toMatchSnapshot();
-            
-            await provider.verify()
+
+            await provider.verify();
+        })
+
     });
 
-    afterAll(() => provider.finalize());
-    
+    afterAll(async () => {
+        await provider.finalize();
+    });
 });
